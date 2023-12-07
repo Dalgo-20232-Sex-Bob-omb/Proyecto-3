@@ -1,0 +1,62 @@
+import random
+import sys
+import math
+
+
+def geometric(p):
+    return int(math.log(random.random()) / math.log(1.0 - p))
+
+
+def main():
+    nv = 10  # Per graph
+    n_graphs = 100
+    start_weight = 1
+    end_weight = 9000000000000000000
+
+    p = 0.35  # Geometric distribution parameter
+
+    output = [f"{n_graphs}"]
+    for _ in range(n_graphs):
+        graph = {}
+        # Print weights
+        weights = [random.randint(start_weight, end_weight) for _ in range(nv)]
+        weights = " ".join([str(x) for x in weights])
+        output.append(weights)
+        # Set undirected edges
+        for u in range(nv):
+            if u not in graph:
+                graph[u] = set()
+            nedges = max(geometric(p), 1)
+            for _ in range(nedges):
+                if len(graph[u]) == nv - 1:
+                    break
+                v = random.randint(0, nv-1)
+                while v == u or v in graph[u]:
+                    v = random.randint(0, nv-1)
+                # Add edge (u,v)
+                graph[u].add(v)
+                # Add the inverse edge (v,u)
+                if v not in graph:
+                    graph[v] = set()
+                graph[v].add(u)
+
+        # Print edges
+        for u in range(nv):
+            output.append(f"{' '.join([str(x+1) for x in graph[u]])}")
+    output = "\n".join(output)
+    print(output)
+
+
+def run():
+    # Open the output file
+    with open('input.in', 'w') as f:
+        # Redirect standard output to the file
+        sys.stdout = f
+        # Call the main function
+        main()
+        # Restore standard output
+        sys.stdout = sys.__stdout__
+
+
+if __name__ == "__main__":
+    run()
