@@ -1,0 +1,11 @@
+D. Berend, S. Mamana,
+A probabilistic algorithm for vertex cover,
+Theoretical Computer Science,
+Volume 983,
+2024,
+114306,
+ISSN 0304-3975,
+https://doi.org/10.1016/j.tcs.2023.114306.
+(https://www.sciencedirect.com/science/article/pii/S0304397523006199)
+Abstract: The Minimum Vertex CoverProblem is the optimization problem of finding a vertex cover Vc of minimal cardinality in a given graph. It is a classic NP-hard problem, and various algorithms have been suggested for it. In this paper, we start with a basic algorithm for solving the problem. Using a probabilistic idea, we use it to develop an improved algorithm. The algorithm is greedy; at each step it adds to the cover a vertex such that the expected cover size, if we continue randomly after this step, is minimal. We study the new algorithm theoretically and empirically, and run simulations to compare its performance to that of some algorithms of a similar nature.
+Keywords: Vertex cover; Random graph; Algorithm; Derandomization
