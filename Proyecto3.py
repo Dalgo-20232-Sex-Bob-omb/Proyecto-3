@@ -45,8 +45,8 @@ def main2():
 
         sol=back_Track_kindof(n,grafo,[],grados)    
         
-        clique=get_max(sol)
-        strr= str(total_valor_clique(pagoPersonas,clique)) + " "
+        clique,max=get_max(sol)
+        strr= str(max) + " "
         for i in range(len(clique)):
             if i == len(clique)-1:
                 strr+= str(clique(i)) + " "
@@ -58,10 +58,11 @@ def get_max(sol:list):
     ret= []
     maxi=0
     for sols in sol:
-        if len(sols)> maxi:
-           ret= sols 
-           maxi= len(sols)
-    return ret       
+       val=total_valor_clique(sols)
+       if val > maxi: 
+           maxi = val
+           ret= sols
+    return ret ,maxi      
 
 def back_Track_kindof(n:list,grafo:list,sol:list,grados:list):
     while n: 
@@ -77,8 +78,8 @@ def back_Track_kindof(n:list,grafo:list,sol:list,grados:list):
         add.append(actual)     
             
         if es_clique_l(grafo,add.copy()):
-         
-            sol.append(add)
+           sol.append(add)
+    
     return sol       
     
 main2()
